@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; width: 1275px; height: 1650px; background: #fff; }
+  body { font-family: Arial, "Helvetica Neue", sans-serif; color: #151515; font-size: 17px; line-height: 1.3; }
+  .page { position: relative; padding: 50px 64px; box-sizing: border-box; height: 1650px; overflow: hidden; }
+  .watermark { position: absolute; top: 700px; left: 40px; transform: rotate(-28deg); font-size: 100px; font-weight: 800; color: rgba(200, 30, 30, 0.07); letter-spacing: 8px; white-space: nowrap; }
+  h1 { font-size: 27px; margin: 0; }
+  .sub { display: flex; justify-content: space-between; font-size: 16px; border-bottom: 3px solid #000; padding-bottom: 10px; margin-bottom: 12px; }
+  .deadline { border: 2px solid #000; padding: 8px 12px; font-size: 17px; margin-bottom: 14px; background: #f3f3f3; }
+  .step { border: 2px solid #000; margin-bottom: 12px; }
+  .step > .head { background: #000; color: #fff; padding: 5px 10px; font-weight: 700; font-size: 17px; }
+  .step > .body { padding: 8px 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th { border: 1px solid #000; background: #e8e8e8; padding: 4px 6px; text-align: left; font-weight: 700; font-size: 14px; }
+  td { border: 1px solid #000; height: 30px; padding: 2px 6px; }
+  .hand { font-family: "Bradley Hand", "Marker Felt", "Comic Sans MS", cursive; font-size: 21px; color: #1c3d8f; }
+  .box { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin: 0 4px; }
+  .line { display: inline-block; border-bottom: 1.5px solid #000; min-width: 220px; height: 20px; vertical-align: bottom; }
+  .row { display: flex; gap: 18px; margin: 7px 0; align-items: flex-end; flex-wrap: wrap; }
+  .small { font-size: 14px; }
+  .ssn { font-family: "Courier New", monospace; font-size: 20px; letter-spacing: 3px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="watermark">SAMPLE · FICTIONAL</div>
+  <h1>2026–2027 Household Application for Free and Reduced-Price School Meals</h1>
+  <div class="sub"><span>Cedar Hollow Unified School District · Nutrition Services</span><span>Apply once per household. Use a pen.</span></div>
+  <div class="deadline"><b>Return by November 20, 2026.</b> Students without an approved application on file after this date will be charged full price for meals ($3.25 lunch, $2.10 breakfast). Return to any school office or mail to Nutrition Services, 400 Orchard Lane, Cedar Hollow.</div>
+
+  <div class="step">
+    <div class="head">STEP 1 · List ALL household members who are infants, children, and students up to and including grade 12</div>
+    <div class="body">
+      <table>
+        <tr><th>Child's first name</th><th>MI</th><th>Child's last name</th><th>School</th><th>Grade</th><th>Foster child</th><th>Homeless, migrant, runaway</th></tr>
+        <tr><td class="hand">Daniel</td><td class="hand">K</td><td class="hand">Osei</td><td class="hand">Maple Elementary</td><td class="hand">3</td><td><span class="box"></span></td><td><span class="box"></span></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td><span class="box"></span></td><td><span class="box"></span></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td><span class="box"></span></td><td><span class="box"></span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="head">STEP 2 · Do any household members (including you) currently participate in SNAP, TANF, or FDPIR?</div>
+    <div class="body">
+      <div class="row"><span><span class="box"></span> NO → go to STEP 3.</span><span><span class="box"></span> YES → write a case number here, then go to STEP 4 (do not complete STEP 3):</span><span class="line" style="min-width:260px"></span></div>
+      <div class="small">Write only one case number in this space.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="head">STEP 3 · Report income for ALL household members (skip this step if you answered "YES" to STEP 2)</div>
+    <div class="body">
+      <div class="row"><b>A. Child income.</b> Sometimes children in the household earn or receive income. Include the TOTAL income received by all household members listed in STEP 1 here.</div>
+      <div class="row">Child income $<span class="line" style="min-width:140px"></span> How often? <span class="box"></span>Weekly <span class="box"></span>Bi-weekly <span class="box"></span>2x Month <span class="box"></span>Monthly</div>
+      <div class="row" style="margin-top:10px"><b>B. All adult household members (including yourself).</b> List all household members not listed in STEP 1, even if they do not receive income. Report gross income (before taxes) in whole dollars.</div>
+      <table>
+        <tr><th style="width:26%">Name of adult household member (first and last)</th><th>Earnings from work</th><th>How often?</th><th>Public assistance / child support / alimony</th><th>How often?</th><th>Pensions / retirement / all other income</th><th>How often?</th></tr>
+        <tr><td></td><td>$</td><td></td><td>$</td><td></td><td>$</td><td></td></tr>
+        <tr><td></td><td>$</td><td></td><td>$</td><td></td><td>$</td><td></td></tr>
+        <tr><td></td><td>$</td><td></td><td>$</td><td></td><td>$</td><td></td></tr>
+      </table>
+      <div class="row" style="margin-top:10px">
+        <span>Total household members (children and adults): <span class="line" style="min-width:70px"></span></span>
+        <span>Last four digits of Social Security Number (SSN) of primary wage earner or other adult household member: <span class="ssn">XXX-XX-____</span></span>
+        <span><span class="box"></span> Check if no SSN</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="head">STEP 4 · Contact information and adult signature</div>
+    <div class="body">
+      <div class="small">"I certify (promise) that all information on this application is true and that all income is reported. I understand that this information is given in connection with the receipt of Federal funds, and that school officials may verify (check) the information. I am aware that if I purposely give false information, my children may lose meal benefits, and I may be prosecuted under applicable State and Federal laws."</div>
+      <div class="row"><span>Street address (if available) <span class="line" style="min-width:330px"></span></span><span>Apt # <span class="line" style="min-width:70px"></span></span><span>City <span class="line" style="min-width:160px"></span></span><span>ZIP <span class="line" style="min-width:90px"></span></span></div>
+      <div class="row"><span>Daytime phone and email (optional) <span class="line" style="min-width:420px"></span></span></div>
+      <div class="row"><span>Printed name of adult completing the form <span class="line" style="min-width:300px"></span></span><span>Signature of adult <span class="line" style="min-width:260px"></span></span><span>Today's date <span class="line" style="min-width:140px"></span></span></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="head">OPTIONAL · Children's racial and ethnic identities</div>
+    <div class="body small">
+      We are required to ask for information about your children's race and ethnicity. This information is important and helps to make sure we are fully serving our community. Responding to this section is optional and does not affect your children's eligibility for free or reduced-price meals.
+      <div class="row">Ethnicity: <span class="box"></span>Hispanic or Latino <span class="box"></span>Not Hispanic or Latino &nbsp; Race (check one or more): <span class="box"></span>American Indian or Alaska Native <span class="box"></span>Asian <span class="box"></span>Black or African American <span class="box"></span>Native Hawaiian or Other Pacific Islander <span class="box"></span>White</div>
+    </div>
+  </div>
+  <div class="small">Questions? Call Nutrition Services at (555) 013-8800, Monday–Friday, 7:30 a.m.–4:00 p.m. You will be notified of your children's eligibility within 10 working days of receiving a complete application.</div>
+</div>
+</body>
+</html>

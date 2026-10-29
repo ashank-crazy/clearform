@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @page { size: 1275px 1650px; margin: 0; }
+  html, body { margin: 0; width: 1275px; height: 1650px; background: #fff; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; color: #1b1b1b; font-size: 21px; line-height: 1.38; }
+  .page { position: relative; padding: 70px 90px; box-sizing: border-box; height: 1650px; overflow: hidden; }
+  .watermark { position: absolute; top: 640px; left: 40px; transform: rotate(-28deg); font-size: 100px; font-weight: 800; color: rgba(200, 30, 30, 0.07); letter-spacing: 8px; white-space: nowrap; }
+  header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 4px solid #0b4f6c; padding-bottom: 22px; }
+  .brand { font-size: 34px; font-weight: 700; color: #0b4f6c; }
+  .brand small { display: block; font-size: 18px; font-weight: 400; color: #444; margin-top: 4px; }
+  .stmt { text-align: right; font-size: 19px; }
+  .stmt b { font-size: 26px; display: block; color: #0b4f6c; letter-spacing: 1px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin: 30px 0 22px; }
+  .box { border: 1.5px solid #9aa9b2; padding: 16px 20px; }
+  .box h4 { margin: 0 0 6px; font-size: 16px; text-transform: uppercase; color: #555; letter-spacing: 1px; }
+  .due { background: #eef5f8; border: 2.5px solid #0b4f6c; }
+  .due .amt { font-size: 40px; font-weight: 800; }
+  table { width: 100%; border-collapse: collapse; font-size: 19px; }
+  th { text-align: left; background: #0b4f6c; color: #fff; padding: 9px 12px; font-weight: 600; }
+  td { padding: 8px 12px; border-bottom: 1px solid #d5dde2; }
+  td.r, th.r { text-align: right; }
+  tr.total td { font-weight: 700; border-top: 2px solid #333; }
+  tr.owe td { font-weight: 800; font-size: 22px; background: #eef5f8; }
+  .notes { margin-top: 24px; font-size: 18px; }
+  .notes p { margin: 0 0 11px; }
+  .help { border-left: 6px solid #2e8b57; background: #f1f8f3; padding: 14px 18px; margin: 18px 0; font-size: 18.5px; }
+  .fine { font-size: 15px; color: #444; }
+  .coupon { position: absolute; left: 90px; right: 90px; bottom: 60px; border-top: 2px dashed #777; padding-top: 18px; font-size: 18px; }
+  .coupon .row { display: flex; justify-content: space-between; gap: 30px; }
+  .blank { display: inline-block; min-width: 200px; border-bottom: 1.5px solid #333; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="watermark">SAMPLE · FICTIONAL</div>
+  <header>
+    <div class="brand">Brightwater Community Hospital<small>Patient Financial Services · 1200 Harbor View Road, Brightwater</small></div>
+    <div class="stmt"><b>PATIENT STATEMENT</b>Statement date: October 20, 2026<br>Account no.: 4471-208-3391<br>Page 1 of 1</div>
+  </header>
+
+  <div class="grid">
+    <div class="box">
+      <h4>Patient / Guarantor</h4>
+      Maria Lopez<br>88 Willow Creek Apt 4B<br>Brightwater
+    </div>
+    <div class="box due">
+      <h4>Amount you owe</h4>
+      <div class="amt">$1,284.50</div>
+      Please pay by: <b>November 19, 2026</b>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Date of service</th><th>Description</th><th class="r">Amount</th></tr>
+    <tr><td>09/14/2026</td><td>Emergency department visit, level 4 (CPT 99284)</td><td class="r">$2,850.00</td></tr>
+    <tr><td>09/14/2026</td><td>Laboratory services: CBC, metabolic panel</td><td class="r">$612.00</td></tr>
+    <tr><td>09/14/2026</td><td>Radiology: chest X-ray, 2 views</td><td class="r">$390.00</td></tr>
+    <tr class="total"><td></td><td>Total charges</td><td class="r">$3,852.00</td></tr>
+    <tr><td>10/02/2026</td><td>Payment from Sunrise Health Plan</td><td class="r">-$2,107.50</td></tr>
+    <tr><td>10/02/2026</td><td>Contractual adjustment (network discount)</td><td class="r">-$460.00</td></tr>
+    <tr class="owe"><td></td><td>PATIENT RESPONSIBILITY (deductible and coinsurance)</td><td class="r">$1,284.50</td></tr>
+  </table>
+
+  <div class="notes">
+    <p><b>How to pay:</b> online at brightwater-pay.example, by phone at (555) 014-2290, or by mail using the payment coupon below. Interest-free monthly payment plans are available if you call before the due date.</p>
+    <div class="help"><b>Need help paying your bill?</b> You may qualify for our Financial Assistance Program, which can reduce or eliminate what you owe based on household income. Applications are accepted up to 240 days after your first bill. Call Patient Financial Services at (555) 014-2290, Monday–Friday, 8:00 a.m.–5:00 p.m.</div>
+    <p>You have the right to request an itemized bill at any time. If you believe there is an error, please call us within 30 days of this statement.</p>
+    <p><b>Important:</b> Accounts with no payment or payment arrangement within 90 days of the first statement may be referred to an outside collection agency.</p>
+    <p class="fine">Free language assistance and interpreter services are available. Call (555) 014-2291. Servicios de intérprete gratuitos disponibles.</p>
+  </div>
+
+  <div class="coupon">
+    <div class="row"><b>Brightwater Community Hospital · Payment coupon</b><span>Account no.: 4471-208-3391</span></div>
+    <div class="row" style="margin-top:12px"><span>Amount due: <b>$1,284.50</b> by November 19, 2026</span><span>Amount enclosed: $<span class="blank"></span></span></div>
+    <div class="row" style="margin-top:12px"><span>Make checks payable to Brightwater Community Hospital. Mail to: PO Box 4410, Brightwater.</span></div>
+  </div>
+</div>
+</body>
+</html>
