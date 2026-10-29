@@ -29,11 +29,11 @@ Official paperwork decides whether people keep their benefits, pay the right amo
 ## How we built it
 
 - **Next.js 16 + React 19 + TypeScript.** One page with three states: upload, progress, result.
-- **Gemini 3.8 Flash through the Gemini API (Google AI Studio).** Images and PDFs go straight to the model. Structured output (a Zod schema converted to JSON Schema) gives the answer the same shape every time, so the interface can render urgency, steps, fields, and warnings as real components instead of a wall of text.
+- **Gemini 3.6 Flash through the Gemini API (Google AI Studio).** Images and PDFs go straight to the model. Structured output (a Zod schema converted to JSON Schema) gives the answer the same shape every time, so the interface can render urgency, steps, fields, and warnings as real components instead of a wall of text.
 - **Faithfulness by design.** The prompt requires exact quotes from the document for every claim, exact dates only when they can be worked out, and "not stated" instead of guesses. It also masks ID and account numbers and treats instructions inside the document as content, never commands.
 - **Streaming.** The server streams progress (reading → thinking → writing, driven by Gemini's thought summaries) and the answer as NDJSON. Follow-up chat streams too.
 - **Translated interface.** The model returns the section headings in the reader's language along with the explanation, so a Hindi or Arabic reader never sees English headings. Arabic and Urdu render right-to-left.
-- **Resilience.** Brief overloads are retried automatically. A blocked or cut-off answer becomes a plain instruction ("cover the ID numbers and try again", "upload fewer pages") instead of a broken page.
+- **Resilience.** Brief overloads are retried automatically. If the main model is overloaded, out of free quota, or hasn't started answering within 15 seconds, the request moves to a second model. A blocked or cut-off answer becomes a plain instruction ("cover the ID numbers and try again", "upload fewer pages") instead of a broken page.
 - **Testing without a key.** The test suite runs the real Gemini SDK against a local mock of the streaming API to check requests, blocked and cut-off answers, retries, and quota errors.
 
 ## Challenges we ran into

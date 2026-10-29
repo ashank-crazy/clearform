@@ -25,7 +25,7 @@ let received: Received[] = [];
 function chunk(parts: object[], finishReason?: string): object {
   return {
     candidates: [{ content: { role: "model", parts }, index: 0, finishReason }],
-    modelVersion: "gemini-3.8-flash",
+    modelVersion: "gemini-3.6-flash",
   };
 }
 
@@ -129,7 +129,7 @@ describe("analyzeDocument", () => {
     expect(events.some((e) => e.type === "progress")).toBe(true);
 
     const [{ url, headers, body }] = received as [Received & { body: Body }];
-    expect(url).toBe("/v1beta/models/gemini-3.8-flash:streamGenerateContent?alt=sse");
+    expect(url).toBe("/v1beta/models/gemini-3.6-flash:streamGenerateContent?alt=sse");
     expect(headers["x-goog-api-key"]).toBe("test-key");
     expect(body.systemInstruction.parts[0].text).toMatch(/^You are ClearForm/);
     expect(body.generationConfig.responseMimeType).toBe("application/json");
@@ -180,8 +180,31 @@ describe("analyzeDocument", () => {
     expect(received).toHaveLength(2);
   });
 
-  it("names a used-up quota and a bad key without retrying", async () => {
+  it("switches to the fallback model when the main one is out of quota", async () => {
     replies = [
+      { status: 429, error: { message: "Quota exceeded.", status: "RESOURCE_EXHAUSTED" } },
+      { chunks: answer(JSON.stringify(sample)) },
+    ];
+    expect(await analyze()).toEqual(sample);
+    expect(received.map((r) => r.url.split(":")[0])).toEqual([
+      "/v1beta/models/gemini-3.6-flash",
+      "/v1beta/models/gemini-3.5-flash",
+    ]);
+  });
+
+  it("starts over on the fallback model when the main one is overloaded partway", async () => {
+    const overloaded = { error: { code: 503, message: "High demand.", status: "UNAVAILABLE" } };
+    replies = [{ chunks: [thought, overloaded] }, { chunks: answer(JSON.stringify(sample)) }];
+    expect(await analyze()).toEqual(sample);
+    expect(received.map((r) => r.url.split(":")[0])).toEqual([
+      "/v1beta/models/gemini-3.6-flash",
+      "/v1beta/models/gemini-3.5-flash",
+    ]);
+  });
+
+  it("names a used-up quota and a bad key, and doesn't retry a bad key", async () => {
+    replies = [
+      { status: 429, error: { message: "Quota exceeded.", status: "RESOURCE_EXHAUSTED" } },
       { status: 429, error: { message: "Quota exceeded.", status: "RESOURCE_EXHAUSTED" } },
       {
         status: 400,
@@ -193,7 +216,7 @@ describe("analyzeDocument", () => {
     ];
     expect(describeError(await failure(analyze()))).toMatch(/used up its AI requests/);
     expect(describeError(await failure(analyze()))).toMatch(/Gemini API key/);
-    expect(received).toHaveLength(2);
+    expect(received).toHaveLength(3);
   });
 });
 
@@ -238,7 +261,10 @@ describe("askAboutDocument", () => {
     ]);
 
     const body = received[0].body as Body;
-    expect(body.generationConfig.thinkingConfig.thinkingLevel).toBe("LOW");
+    expect(body.generationConfig.thinkingConfig).toEqual({
+      thinkingLevel: "LOW",
+      includeThoughts: true,
+    });
     expect(body.generationConfig.responseMimeType).toBeUndefined();
     expect(body.contents.map((c) => c.role)).toEqual(["user", "model", "user"]);
     const first = body.contents[0].parts;
@@ -255,6 +281,7 @@ describe("askAboutDocument", () => {
 
   it("ends with an error line the browser can show", async () => {
     replies = [
+      { status: 429, error: { message: "Quota exceeded.", status: "RESOURCE_EXHAUSTED" } },
       { status: 429, error: { message: "Quota exceeded.", status: "RESOURCE_EXHAUSTED" } },
     ];
     const out = await lines();

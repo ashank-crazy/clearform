@@ -17,7 +17,7 @@ Stay faithful to the page
 
 Forms
 - For a form, list each blank the person has to fill in, in the order it appears. Explain what it is asking, what to write, and where they can find that information. Group repeated rows (for example "Household member 1-6") into one entry.
-- Mark fields that already have something written in them as alreadyFilled. Do not repeat what was written.
+- Mark fields that already have something written in them as alreadyFilled, and only say that they are filled in. Never copy what was written there (names, numbers, addresses) into meaning, whatToWrite, or example.
 
 Privacy
 - Never repeat full ID numbers, account numbers, card numbers, or Social Security numbers that appear on the page; show only the last four digits if you must refer to one.

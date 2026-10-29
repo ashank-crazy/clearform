@@ -44,7 +44,8 @@ Get a free API key from [Google AI Studio](https://aistudio.google.com/apikey), 
 ## How it works
 
 1. The browser resizes photos to 2000 px on the long edge and sends the pages to `/api/analyze`.
-2. The server sends them to **Gemini 3.8 Flash** (`gemini-3.8-flash`; set `CLEARFORM_MODEL` to use another) with a [JSON schema](src/lib/schema.ts) for the response, so the answer always matches a fixed schema: urgency, summary, actions, form fields, money, dates, warnings, glossary, contacts, and translated interface labels.
+2. The server sends them to **Gemini 3.6 Flash** (`gemini-3.6-flash`; set `CLEARFORM_MODEL` to use another) with a [JSON schema](src/lib/schema.ts) for the response, so the answer always matches a fixed schema: urgency, summary, actions, form fields, money, dates, warnings, glossary, contacts, and translated interface labels.
+   If that model is overloaded, out of free quota, or hasn't started answering within 15 seconds, the request moves to `gemini-3.5-flash`. `CLEARFORM_FALLBACK_MODELS` takes a comma-separated list; each model has its own free daily quota (20 requests per model at the time of writing), so a longer list goes further on a free key.
 3. The answer streams back. The page shows real progress while it arrives: reading, thinking (while Gemini's thought summaries stream), then writing.
 4. Follow-up questions go to `/api/ask` with the same pages, the explanation, and the conversation so far.
 
